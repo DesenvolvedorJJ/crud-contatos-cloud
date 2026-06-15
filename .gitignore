@@ -1,0 +1,21 @@
+# Dependências (não usamos build, mas por segurança)
+node_modules/
+
+# Arquivos de ambiente / segredos — NUNCA versione a service_role!
+.env
+.env.*
+*.local
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Documentos de origem da atividade (opcional remover do deploy)
+# Ativ-Nuvem_banco-app.docx

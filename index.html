@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agenda de Contatos · Supabase</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📒</text></svg>" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>📒 Agenda de Contatos</h1>
+    <span class="badge">Supabase · PostgreSQL</span>
+  </header>
+
+  <main class="container">
+
+    <!-- Barra de busca / navegação -->
+    <section class="card" aria-label="Busca">
+      <div class="search-row">
+        <input
+          type="text"
+          id="campoBusca"
+          class="input"
+          placeholder="Buscar por nome..."
+          autocomplete="off"
+        />
+        <button id="btnBuscar" class="btn btn-primary" type="button">🔍 Buscar</button>
+        <button id="btnNovo" class="btn btn-secondary" type="button">＋ Novo</button>
+      </div>
+    </section>
+
+    <!-- Formulário de cadastro / edição -->
+    <section class="card" id="cardForm" hidden aria-label="Formulário de contato">
+      <h2 id="formTitulo">Novo Contato</h2>
+      <form id="formContato" novalidate>
+        <input type="hidden" id="contatoId" />
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="nome">Nome <span class="req">*</span></label>
+            <input type="text" id="nome" class="input" maxlength="255" required />
+          </div>
+
+          <div class="field">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" class="input" maxlength="25"
+                   placeholder="(11) 99999-9999" />
+          </div>
+
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" class="input" maxlength="255"
+                   placeholder="nome@email.com" />
+          </div>
+
+          <div class="field">
+            <label for="dtcontato">Data do contato</label>
+            <input type="date" id="dtcontato" class="input" />
+          </div>
+
+          <div class="field field-full">
+            <label for="obs">Observação</label>
+            <input type="text" id="obs" class="input" maxlength="255"
+                   placeholder="Ex.: Cliente preferencial" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="btnSalvar" class="btn btn-primary">💾 Salvar</button>
+          <button type="button" id="btnCancelar" class="btn btn-ghost">✕ Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Mensagens de status -->
+    <div id="status" class="status" role="status" aria-live="polite" hidden></div>
+
+    <!-- Listagem -->
+    <section class="card" aria-label="Lista de contatos">
+      <div class="list-head">
+        <h2>Contatos</h2>
+        <span id="contador" class="muted"></span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="tabela">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Telefone</th>
+              <th>E-mail</th>
+              <th class="col-acoes">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="listaContatos">
+            <!-- linhas inseridas via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <p id="vazio" class="vazio" hidden>Nenhum contato encontrado.</p>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>Atividade de Desenvolvimento em Nuvem · CRUD com Supabase (RLS)</p>
+  </footer>
+
+  <!-- SDK oficial do Supabase (v2) via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Configuração e aplicação -->
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
