@@ -99,7 +99,7 @@ Abra `http://localhost:5500`.
 
 ---
 
-## 🔒 Segurança implementada (obrigatório na atividade)
+## 🔒 Segurança implementada
 
 Como a app roda inteiramente no navegador, a chave de conexão fica visível no
 código. A proteção real está **no banco**, via RLS:
