@@ -1,4 +1,4 @@
-# 🎤 Apresentação / Defesa — Agenda de Contatos (Supabase)
+# Apresentação / Defesa — Agenda de Contatos (Supabase)
 
 > Roteiro para demonstrar o app funcionando e responder às perguntas do
 > professor sobre **código**, **fluxo de dados** e **segurança**.
@@ -18,19 +18,7 @@ em um banco PostgreSQL hospedado no **Supabase**, com segurança garantida por
 
 ---
 
-## 2) Roteiro da demonstração (ao vivo)
-
-1. **Abrir o app publicado** (GitHub Pages). Mostrar a lista carregando do banco.
-2. **Novo** → preencher nome/telefone/e-mail → **Salvar** → o contato aparece na lista (INSERT).
-3. **Buscar** pelo nome → a tabela filtra (SELECT com `ilike`).
-4. **🖊️ Editar** um contato → alterar um campo → **Salvar** (UPDATE).
-5. **🗑️ Excluir** → confirmar no alerta → some da lista (DELETE).
-6. (Opcional) Abrir o app em **duas abas** e mostrar a atualização em **tempo real**.
-7. Abrir o **Dashboard do Supabase → Table Editor** e mostrar os dados batendo com a tela.
-
----
-
-## 3) Fluxo dos dados (como funciona por dentro)
+## 2) Fluxo dos dados (como funciona por dentro)
 
 ```
 [ Navegador / index.html ]
