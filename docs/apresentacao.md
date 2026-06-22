@@ -57,48 +57,4 @@ Mapa **operação → código → SQL**:
 | Salvar (edição) | `salvar()` | `.update().eq('id', id)` | `UPDATE contato SET ... WHERE id = ?` |
 | Excluir | `excluir()` | `.delete().eq('id', id)` | `DELETE FROM contato WHERE id = ?` |
 
----
 
-## 4) Segurança — perguntas prováveis e respostas
-
-**P: A chave do banco não fica exposta no código?**
-R: A app é só frontend, então a chave fica visível — **mas é a `anon key`, que é
-pública por design**. Ela só é útil dentro das regras de **RLS**. A chave
-`service_role` (que ignora o RLS) **nunca** vai para o frontend nem para o GitHub.
-
-**P: O que protege o banco então?**
-R: O **RLS habilitado** na tabela. Sem políticas, o padrão é **negar tudo**.
-Criamos políticas explícitas por operação para a role `anon` (`sql/setup.sql`).
-
-**P: Qualquer um não pode mandar lixo para o banco?**
-R: O `INSERT`/`UPDATE` têm `WITH CHECK` validando **nome obrigatório**, **tamanho
-do telefone** e **formato de e-mail** no servidor. Mesmo chamando a API direto
-(fora do nosso JS), dados inválidos são rejeitados.
-
-**P: E para impedir exclusão em massa?**
-R: A política de `DELETE` é por linha (`id`). Se for preciso travar de vez,
-basta **remover a policy de DELETE** — sem ela, a role `anon` não apaga nada
-(comentado no `setup.sql`).
-
-**P: Tem proteção contra XSS na listagem?**
-R: Sim — a função `esc()` em `app.js` faz *escape* do HTML antes de renderizar
-os dados vindos do banco.
-
----
-
-## 5) Pontos técnicos para citar
-
-- **Sem build/framework:** HTML + CSS + JS puro; SDK do Supabase via CDN.
-- **`index.html` na raiz:** exigência do GitHub Pages.
-- **Realtime opcional:** `db.channel(...).on('postgres_changes', ...)`.
-- **`id` automático:** `bigint generated always as identity` (equivale ao `SERIAL`).
-
----
-
-## 6) Checklist de entrega
-
-- [ ] SQL executado no Supabase (tabela + RLS + políticas).
-- [ ] `js/config.js` com URL e anon key reais.
-- [ ] Repositório no GitHub com o código e o `README.md`.
-- [ ] GitHub Pages ativo e link funcionando.
-- [ ] Nomes dos integrantes preenchidos no `README.md` e neste arquivo.
